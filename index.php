@@ -1,3 +1,5 @@
+
+<!-- https://www.youtube.com/watch?v=1R9iHaZoE2Q WATCH THIS THEN REFACTOR YOUR CODE TO ACOMODATE JQUERY -->
 <?php 
 session_start();
   include("connect.php");
