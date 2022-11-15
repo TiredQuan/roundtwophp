@@ -26,6 +26,44 @@ $result = mysqli_query($connect,$sql);
 <body>
     <div class="container">
     <?php include("includes/header.php"); ?>
+    <div class="d-grid"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStudent">Add Student</button></div>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="addStudent" tabindex="-1" aria-labelledby="formModal" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+        <div class="modal-content p-5">
+            <div class="model-body">
+                <form method="POST">
+                            <div class="mb-3">
+                                <label for="fullname" class="form-label">Fullname</label>
+                                <input type="text" class="form-control" id="fullname" placeholder="Nguyễn Văn A" name="fullname" autocomplete="off">
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-4">
+                                    <label for="class" class="form-label">Class</label>
+                                    <input type="text" class="form-control" id="class" placeholder="5a5" name="class" autocomplete="off">
+                                </div>
+                                <div class="mb-3 col-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gender" id="nam" value="0" checked>
+                                        <label class="form-check-label" for="nam">Male</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gender" id="nu" value="1">
+                                        <label class="form-check-label" for="nu">Female</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3 col-4">
+                                <label for="birthday" class="form-label">Birthday</label>
+                                <input type="date" placeholder="dd-mm-yyyy" class="form-control" id="birthday" name="birthday">
+                            </div>
+                            </div>
+                            <div class="d-grid"><button type="submit" name="submit" class="btn btn-primary" onclick="adduser()">Add Student</button></div>
+                        </form>
+            </div>
+        </div>
+        </div>
+        </div>
         <table class="table">
             <thead>
                 <tr>
@@ -64,46 +102,46 @@ $result = mysqli_query($connect,$sql);
                 
             </tbody>
         </table>
-        <div class="d-grid"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStudent">Add Student</button></div>
-        
-        <!-- Modal -->
-        <div class="modal fade" id="addStudent" tabindex="-1" aria-labelledby="formModal" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-        <div class="modal-content p-5">
-            <div class="model-body">
-                <form method="POST">
-                            <div class="mb-3">
-                                <label for="fullname" class="form-label">Fullname</label>
-                                <input type="text" class="form-control" id="fullname" placeholder="Nguyễn Văn A" name="fullname" autocomplete="off">
-                            </div>
-                            <div class="row">
-                                <div class="mb-3 col-4">
-                                    <label for="class" class="form-label">Class</label>
-                                    <input type="text" class="form-control" id="class" placeholder="5a5" name="class" autocomplete="off">
-                                </div>
-                                <div class="mb-3 col-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gender" id="nam" value="0" checked>
-                                        <label class="form-check-label" for="nam">Male</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gender" id="nu" value="1">
-                                        <label class="form-check-label" for="nu">Female</label>
-                                    </div>
-                                </div>
-                                <div class="mb-3 col-4">
-                                <label for="birthday" class="form-label">Birthday</label>
-                                <input type="date" placeholder="dd-mm-yyyy" class="form-control" id="birthday" name="birthday">
-                            </div>
-                            </div>
-                            <div class="d-grid"><button type="submit" name="submit" class="btn btn-primary">Add Student</button></div>
-                        </form>
-            </div>
-        </div>
-        </div>
-        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+
+
+        function displayData(){
+            //Finish this
+            $.ajax({
+                type: "method",
+                url: "url",
+                data: "data",
+                dataType: "dataType",
+                success: function (response) {
+                    
+                }
+            });
+        }
+
+        function adduser(){
+            let addName=$('#fullname').val()
+            let addClass=$('#class').val()
+            let addGender=$('input[name="gender"]:checked').val()
+            let addBirthday=$('#birthday').val()
+
+            $.ajax({
+                type: "POST",
+                url: "add.php",
+                data: {
+                    sendName: addName,
+                    sendClass: addClass,
+                    sendGender: addGender,
+                    sendBirthday: addBirthday,
+                },
+                dataType: "dataType",
+                success: function (data,status) {
+                    console.log(status)
+                }
+            });
+        }
+    </script>
 </body>
 </html>
